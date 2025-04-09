@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dad's Book Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Welcome to My Book Library</h1>
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('add')">Add Book</a>
+    <a href="#" onclick="showPage('list')">View All Books</a>
+    <a href="#" onclick="showPage('stats')">Statistics</a>
+  </nav>
+
+  <div id="home">
+    <h2>Recently Added Books</h2>
+    <table id="recently-added">
+      <tr>
+        <th>Added</th>
+        <th>Read On</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Review</th>
+        <th>Cover</th>
+      </tr>
+    </table>
+  </div>
+
+  <div id="add" class="hidden">
+    <h2>Add a Book</h2>
+    <form id="book-form">
+      <fieldset>
+        <legend>Book Info</legend>
+<label for="title">Title:<span class="required-star">*</span></label>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="author">Author:<span class="required-star">*</span></label>
+    <input type="text" id="author" name="author" required maxlength="100"><br>
+        <label>Genre:
+          <select id="genre">
+            <option>Fiction</option>
+            <option>Non-Fiction</option>
+            <option>Biography</option>
+            <option>Science Fiction</option>
+            <option>Fantasy</option>
+          </select>
+        </label><br>
+        <label>Read?
+          <select id="read" onchange="toggleReadDateInput(this.value)">
+            <option value="No">No</option>
+		<option value="Yes">Yes</option>
+          </select>
+        </label><br>
+        <label id="read-date-label" class="hidden">Date Read: 
+          <input type="datetime-local" id="read-date">
+        </label><br>
+        <div id="review-fields" style="display: none;">
+  <label for="review">Review (1–5):</label>
+  <input type="number" id="review" name="review" step="0.1" min="1" max="5"><br><br>
+</div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Book Cover Photo</legend>
+        <input type="file" id="cover" accept="image/*">
+      </fieldset>
+
+      <button type="button" onclick="confirmSubmit()">Add this book</button>
+    </form>
+
+  </div>
+
+  <div id="confirm" class="hidden">
+    <p>Are you sure you want to add this book?</p>
+    <button onclick="submitForm()">Yes, I'm sure</button>
+    <button onclick="cancelSubmit()">No, go back</button>
+  </div>
+
+  <div id="thankyou" class="hidden">
+    <p>Your book has been successfully added!</p>
+  </div>
+
+  <div id="list" class="hidden">
+    <h2>All Books</h2>
+    <table id="all-books">
+      <tr><th>Added</th><th>Read On</th><th>Title</th><th>Author</th><th>Genre</th><th>Read</th><th>Review</th><th>Cover</th></tr>
+    </table>
+  </div>
+
+  <div id="details" class="hidden">
+    <h2>Book Details</h2>
+    <div id="book-detail-content"></div>
+    <button onclick="showPage('list')">Back to List</button>
+  </div>
+
+  <div id="photo-modal" class="hidden">
+    <img id="fullscreen" class="fullscreen-img" src="https://via.placeholder.com/150"  alt="Placeholder image">
+    <br>
+    <button onclick="closePhoto()">Close</button>
+  </div>
+
+  <div id="stats" class="hidden">
+    <h2>Statistics</h2>
+    <canvas id="books-per-month-chart" width="800" height="400"></canvas>
+	<canvas id="genre-pie-chart" width="400" height="400"></canvas>
+	<canvas id="review-bar-chart" width="800" height="400"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

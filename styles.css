@@ -1,0 +1,16 @@
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    nav a { margin: 10px; text-decoration: none; color: blue; }
+    .hidden { display: none; }
+    .thumbnail { width: 100px; height: 100px; object-fit: cover; cursor: pointer; }
+    .fullscreen-img { width: 800px; height: 600px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .star { font-size: 1.5em; color: gray; cursor: pointer; }
+    .star.filled { color: gold; }
+  .required-star {
+    color: red;
+    margin-left: 4px;
+  }
+  </style>
